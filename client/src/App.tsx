@@ -1,0 +1,97 @@
+import React from 'react';
+import { useState } from 'react';
+
+import './App.css';
+import { AppProps, Product } from './interfaces';
+
+
+const defaultFormData = {
+  title: "",
+  body: '',
+}
+
+type CheckoutStep = "Details" | "Shipping" | "Payment";
+
+function App({ headerText, extraText = "default text" }: AppProps) {
+  // const [product, setProduct] = useState<Product | null>(null)
+  const [formData, setFormData] = useState(defaultFormData)
+  const { title, body } = formData
+  const [checkoutStep, setCheckoutStep] = useState<CheckoutStep>("Details")
+
+  // const fetchProduct = () => setProduct({
+  //     name: "palmtree",
+  //     weight: 200,
+  //     country: "bulgaria",
+  //     inStock: false
+  //   }
+  // )
+
+
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.id]: e.target.value,
+    }));
+  }
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(formData);
+    setFormData(defaultFormData)
+  }
+
+
+  return (
+    <div className="App">
+      This gonna be a fancy online shop
+      <h1>{headerText}</h1>
+      {extraText && <p> {extraText}</p>}
+      {/* <button onClick={fetchProduct}> Fetch product on click</button> */}
+      <h1>Form</h1>
+      <p>Create a post</p>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="title">Title</label>
+        <br />
+        <input type="text" id="title" value={title} onChange={onChange} />
+        <br />
+        <br />
+        <label htmlFor="body">Body</label>
+
+        <br />
+        <input type="text" id="body" value={body} onChange={onChange} />
+        <br />
+        <button type="submit">Upload Post</button>
+      </form>
+
+
+      {checkoutStep === "Details" &&
+        (
+          <>
+            <h1>Details</h1>
+            <button type="button" onClick={() => setCheckoutStep("Shipping")}>
+              Next
+            </button>
+          </>
+        )
+      }
+
+      {checkoutStep === "Shipping" && (
+        <>
+          <h1>Shipping</h1>
+          <button type="button" onClick={() => setCheckoutStep("Payment")}>
+            Next
+          </button>
+        </>
+      )}
+
+      {checkoutStep === "Payment" && (
+        <>
+          <h1>Payment</h1>
+        </>
+      )}
+
+    </div>
+  );
+}
+
+export default App;
