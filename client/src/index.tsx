@@ -5,7 +5,7 @@ import App from './App';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App headerText="Hello Username" extraText='welcome'/>
+    <App headerText="Welcome to the Shop" extraText='Hello <username>'/>
   </React.StrictMode>,
   document.getElementById('root')
 );

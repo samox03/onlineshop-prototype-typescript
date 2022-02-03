@@ -1,5 +1,7 @@
 .App{
-  padding: 20px 25px
+  padding: 20px 25px;
+  background-color: rgb(250, 211, 208);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .App-logo {

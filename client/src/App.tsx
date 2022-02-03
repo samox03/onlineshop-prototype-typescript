@@ -43,11 +43,22 @@ function App({ headerText, extraText = "default text" }: AppProps) {
 
   return (
     <div className="App">
-      This gonna be a fancy online shop
-      <h1>{headerText}</h1>
-      {extraText && <p> {extraText}</p>}
+      <div>
+        This gonna be a fancy online shop
+        <h1>{headerText}</h1>
+        <p> {extraText}</p>
+      </div>
+      <div>
+        <h1>Products</h1>
+        <div>
+          <div>
+            Grid
+            {/* map through API products */}
+          </div>
+        </div>
+      </div>
       {/* <button onClick={fetchProduct}> Fetch product on click</button> */}
-      <h1>Form</h1>
+      <h1>Comment on Product</h1>
       <p>Create a post</p>
       <form onSubmit={onSubmit}>
         <label htmlFor="title">Title</label>
@@ -63,33 +74,39 @@ function App({ headerText, extraText = "default text" }: AppProps) {
         <button type="submit">Upload Post</button>
       </form>
 
+      <div>
+        <h3>Rate the Product</h3>
+        Stars
+      </div>
 
-      {checkoutStep === "Details" &&
-        (
+      <div>
+        <h2>Your order:</h2>
+        {checkoutStep === "Details" &&
+          (
+            <>
+              <h1>Details</h1>
+              <button type="button" onClick={() => setCheckoutStep("Shipping")}>
+                Next
+              </button>
+            </>
+          )
+        }
+
+        {checkoutStep === "Shipping" && (
           <>
-            <h1>Details</h1>
-            <button type="button" onClick={() => setCheckoutStep("Shipping")}>
+            <h1>Shipping</h1>
+            <button type="button" onClick={() => setCheckoutStep("Payment")}>
               Next
             </button>
           </>
-        )
-      }
+        )}
 
-      {checkoutStep === "Shipping" && (
-        <>
-          <h1>Shipping</h1>
-          <button type="button" onClick={() => setCheckoutStep("Payment")}>
-            Next
-          </button>
-        </>
-      )}
-
-      {checkoutStep === "Payment" && (
-        <>
-          <h1>Payment</h1>
-        </>
-      )}
-
+        {checkoutStep === "Payment" && (
+          <>
+            <h1>Payment</h1>
+          </>
+        )}
+      </div>
     </div>
   );
 }

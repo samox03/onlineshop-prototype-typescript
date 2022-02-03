@@ -1,13 +1,10 @@
-# Dependency directory
-node_modules
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # Debug log from npm
 npm-debug.log
 
 # Environment Variables should NEVER be published
 .env
-
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
 /node_modules
