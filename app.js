@@ -28,7 +28,7 @@ const MongoStore = require('connect-mongo')
 app.use(session({
 Secret: 'doesnt matter for now',
 Resave: false,
-save Unitialized: false 			//---> dont create cookies for non logged in users
+save Unitialized: false, 			//---> dont create cookies for non logged in users
 Store: MongoStore.create({mongoUrl: 'mongodb://localhost/lab-profile-app'})
 }));
 
